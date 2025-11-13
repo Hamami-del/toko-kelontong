@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelontong Hamami — Toko Kelontong Online</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="#">Hamami<span class="accent">Digital</span></a>
+      <nav class="nav">
+        <a href="#products">Produk</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="open-cart" class="cart-btn" aria-label="Buka keranjang">🛒 <span id="cart-badge">0</span></button>
+        <button id="menu-toggle" class="hamburger" aria-label="Buka menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Toko Kelontong Online</h1>
+        <p class="lead">Belanja kebutuhan harian murah, cepat, dan aman. Gratis ambil di toko atau kirim ke rumah.</p>
+        <a href="#products" class="btn primary">Belanja Sekarang</a>
+      </div>
+      <div class="hero-img">
+        <!-- Tambahkan gambar hero di sini (manual) -->
+        <div class="placeholder-img">Gambar Hero</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <main class="container">
+    <section id="products" class="products-section">
+      <h2>Produk Kami</h2>
+      <div class="product-grid" id="product-grid">
+        <!-- Contoh produk: ganti gambar src nanti -->
+        <article class="product" data-id="beras-5kg" data-price="75000">
+          <img src="assets/beras-5kg.jpg" alt="Beras 5kg">
+          <h3 class="product-title">Beras 5kg</h3>
+          <p class="price">Rp 75.000</p>
+          <div class="product-actions">
+            <div class="qty-wrap">
+              <button class="qty-decrease">-</button>
+              <input class="quantity" type="number" value="1" min="1">
+              <button class="qty-increase">+</button>
+            </div>
+            <button class="beli btn primary">Beli</button>
+          </div>
+        </article>
+
+        <article class="product" data-id="minyak-1l" data-price="22000">
+          <img src="assets/minyak-1l.jpg" alt="Minyak Goreng 1L">
+          <h3 class="product-title">Minyak Goreng 1L</h3>
+          <p class="price">Rp 22.000</p>
+          <div class="product-actions">
+            <div class="qty-wrap">
+              <button class="qty-decrease">-</button>
+              <input class="quantity" type="number" value="1" min="1">
+              <button class="qty-increase">+</button>
+            </div>
+            <button class="beli btn primary">Beli</button>
+          </div>
+        </article>
+
+        <article class="product" data-id="gula-1kg" data-price="15000">
+          <img src="assets/gula-1kg.jpg" alt="Gula 1kg">
+          <h3 class="product-title">Gula 1kg</h3>
+          <p class="price">Rp 15.000</p>
+          <div class="product-actions">
+            <div class="qty-wrap">
+              <button class="qty-decrease">-</button>
+              <input class="quantity" type="number" value="1" min="1">
+              <button class="qty-increase">+</button>
+            </div>
+            <button class="beli btn primary">Beli</button>
+          </div>
+        </article>
+
+        <!-- Tambahkan produk lain di sini (salin struktur article .product) -->
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <h2>Tentang Kami</h2>
+      <p>Hamami Digital — toko kelontong lokal yang menyediakan kebutuhan harian dengan harga bersaing dan layanan ramah. Kami melayani pengiriman lokal dan ambil langsung di toko.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <h2>Kontak</h2>
+      <p>Butuh bantuan atau ingin bermitra? Hubungi kami lewat:</p>
+      <ul>
+        <li>Telepon / WA: 0812-xxxx-xxxx</li>
+        <li>Email: hamami@example.com</li>
+        <li>Alamat: Jalan Contoh No. 12, Kota</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- CART MODAL (diletakkan di akhir body) -->
+  <div class="cart-modal-overlay" id="cart-modal-overlay" aria-hidden="true">
+    <div class="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <h3 id="cart-title">Keranjang Belanja</h3>
+        <div>
+          <button class="btn ghost" id="close-cart">Tutup</button>
+        </div>
+      </div>
+
+      <div id="cart-content">
+        <div class="cart-items" id="cart-items"></div>
+        <div id="cart-empty" class="cart-empty">Keranjang kosong — tambahkan produk dulu.</div>
+
+        <div id="checkout-section" style="display:none;">
+          <div class="total-line">
+            <span>Total Barang:</span>
+            <span id="cart-total-items">0</span>
+          </div>
+          <div class="total-line">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal">Rp 0</span>
+          </div>
+
+          <form id="checkout-form" class="checkout-form">
+            <div class="checkout-row">
+              <input required id="cust-name" placeholder="Nama lengkap" />
+              <input required id="cust-phone" placeholder="No. HP" />
+            </div>
+            <div>
+              <textarea required id="cust-address" rows="2" placeholder="Alamat lengkap (untuk pengiriman)"></textarea>
+            </div>
+            <div class="checkout-row">
+              <select id="shipping-method">
+                <option value="jne">JNE</option>
+                <option value="pickup">Ambil di toko</option>
+              </select>
+              <select id="payment-method">
+                <option value="transfer">Transfer Bank</option>
+                <option value="cod">COD</option>
+              </select>
+            </div>
+
+            <div class="actions">
+              <button type="button" class="btn ghost" id="clear-cart">Kosongkan</button>
+              <button type="submit" class="btn primary" id="submit-order">Konfirmasi & Bayar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="order-success" class="order-success" style="display:none;"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Hamami Digital — Toko Kelontong</div>
+      <div>Made with ❤️</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
